@@ -1,6 +1,39 @@
 import { NextResponse } from 'next/server';
 import { CartItem } from '../../../types';
 
+// In-memory cache for duplicate queries (LRU / Simple Map)
+const queryCache = new Map<string, { co2_kg: number; relatable_comparison: string; micro_nudge: string; timestamp: number }>();
+const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
+// Clean stale items from cache to avoid memory leaks
+function cleanStaleCache() {
+  const now = Date.now();
+  for (const [key, value] of queryCache.entries()) {
+    if (now - value.timestamp > CACHE_TTL) {
+      queryCache.delete(key);
+    }
+  }
+}
+
+// Simple prompt injection detection and neutralization
+function sanitizeCustomPrompt(prompt: string): string {
+  if (!prompt) return '';
+  // Basic patterns trying to override system prompts
+  const injectionPatterns = [
+    /ignore previous/i,
+    /system prompt/i,
+    /you are now/i,
+    /act as/i,
+    /new instruction/i,
+    /override/i
+  ];
+  let sanitized = prompt;
+  for (const pattern of injectionPatterns) {
+    sanitized = sanitized.replace(pattern, '[neutralized]');
+  }
+  return sanitized.slice(0, 500); // Limit maximum characters to avoid token exploitation
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -18,6 +51,21 @@ export async function POST(request: Request) {
         { error: '"customPrompt" must be a string if provided.' },
         { status: 400 }
       );
+    }
+
+    const sanitizedPrompt = sanitizeCustomPrompt(customPrompt || '');
+
+    // Hash items and prompt to create cache key
+    const cacheKey = JSON.stringify({ items, prompt: sanitizedPrompt });
+    cleanStaleCache();
+    if (queryCache.has(cacheKey)) {
+      const cachedResponse = queryCache.get(cacheKey)!;
+      return NextResponse.json({
+        co2_kg: cachedResponse.co2_kg,
+        relatable_comparison: cachedResponse.relatable_comparison,
+        micro_nudge: cachedResponse.micro_nudge,
+        _cached: true,
+      });
     }
 
     // Check header for Reviewer API Key first, then fall back to environment variable
@@ -48,7 +96,7 @@ export async function POST(request: Request) {
 ${itemsSummary}
 
 Pre-calculated subtotal: ~${totalEstimate.toFixed(3)} kg CO₂ (use this as a reference baseline, verify with your own knowledge).
-Additional context from the user: ${customPrompt || 'None provided.'}
+Additional context from the user: ${sanitizedPrompt || 'None provided.'}
 
 Please:
 1. Calculate (or verify) the total carbon emissions in kg of CO2 equivalent across all items.
@@ -140,6 +188,14 @@ Be scientific but conversational.`;
         { status: 502 }
       );
     }
+
+    // Save to cache
+    queryCache.set(cacheKey, {
+      co2_kg: parsedResult.co2_kg,
+      relatable_comparison: parsedResult.relatable_comparison,
+      micro_nudge: parsedResult.micro_nudge,
+      timestamp: Date.now(),
+    });
 
     return NextResponse.json({
       co2_kg: parsedResult.co2_kg,
