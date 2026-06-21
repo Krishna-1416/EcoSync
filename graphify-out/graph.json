@@ -1,0 +1,333 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "eslint.config.mjs",
+      "file_type": "code",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L1",
+      "id": "eslint_config_mjs",
+      "community": 7,
+      "norm_label": "eslint.config.mjs"
+    },
+    {
+      "label": "jest.config.js",
+      "file_type": "code",
+      "source_file": "jest.config.js",
+      "source_location": "L1",
+      "id": "jest_config_js",
+      "community": 8,
+      "norm_label": "jest.config.js"
+    },
+    {
+      "label": "jest.setup.js",
+      "file_type": "code",
+      "source_file": "jest.setup.js",
+      "source_location": "L1",
+      "id": "jest_setup_js",
+      "community": 9,
+      "norm_label": "jest.setup.js"
+    },
+    {
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "next-env.d.ts",
+      "source_location": "L1",
+      "id": "next_env_d_ts",
+      "community": 10,
+      "norm_label": "next-env.d.ts"
+    },
+    {
+      "label": "next.config.ts",
+      "file_type": "code",
+      "source_file": "next.config.ts",
+      "source_location": "L1",
+      "id": "next_config_ts",
+      "community": 11,
+      "norm_label": "next.config.ts"
+    },
+    {
+      "label": "postcss.config.mjs",
+      "file_type": "code",
+      "source_file": "postcss.config.mjs",
+      "source_location": "L1",
+      "id": "postcss_config_mjs",
+      "community": 12,
+      "norm_label": "postcss.config.mjs"
+    },
+    {
+      "label": "error.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\error.tsx",
+      "source_location": "L1",
+      "id": "src_app_error_tsx",
+      "community": 1,
+      "norm_label": "error.tsx"
+    },
+    {
+      "label": "ErrorBoundary()",
+      "file_type": "code",
+      "source_file": "src\\app\\error.tsx",
+      "source_location": "L5",
+      "id": "app_error_errorboundary",
+      "community": 1,
+      "norm_label": "errorboundary()"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L1",
+      "id": "src_app_layout_tsx",
+      "community": 2,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "RootLayout()",
+      "file_type": "code",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L21",
+      "id": "app_layout_rootlayout",
+      "community": 2,
+      "norm_label": "rootlayout()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L1",
+      "id": "src_app_page_tsx",
+      "community": 13,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\chat\\route.ts",
+      "source_location": "L1",
+      "id": "src_app_api_chat_route_ts",
+      "community": 3,
+      "norm_label": "route.ts"
+    },
+    {
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\chat\\route.ts",
+      "source_location": "L4",
+      "id": "chat_route_post",
+      "community": 3,
+      "norm_label": "post()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\settings\\page.tsx",
+      "source_location": "L1",
+      "id": "src_app_settings_page_tsx",
+      "community": 4,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "SettingsPage()",
+      "file_type": "code",
+      "source_file": "src\\app\\settings\\page.tsx",
+      "source_location": "L7",
+      "id": "settings_page_settingspage",
+      "community": 4,
+      "norm_label": "settingspage()"
+    },
+    {
+      "label": "error.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\tracker\\error.tsx",
+      "source_location": "L1",
+      "id": "src_app_tracker_error_tsx",
+      "community": 5,
+      "norm_label": "error.tsx"
+    },
+    {
+      "label": "TrackerError()",
+      "file_type": "code",
+      "source_file": "src\\app\\tracker\\error.tsx",
+      "source_location": "L5",
+      "id": "tracker_error_trackererror",
+      "community": 5,
+      "norm_label": "trackererror()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\tracker\\page.tsx",
+      "source_location": "L1",
+      "id": "src_app_tracker_page_tsx",
+      "community": 6,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "TrackerPage()",
+      "file_type": "code",
+      "source_file": "src\\app\\tracker\\page.tsx",
+      "source_location": "L8",
+      "id": "tracker_page_trackerpage",
+      "community": 6,
+      "norm_label": "trackerpage()"
+    },
+    {
+      "label": "Cart.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\Cart.tsx",
+      "source_location": "L1",
+      "id": "src_components_cart_tsx",
+      "community": 0,
+      "norm_label": "cart.tsx"
+    },
+    {
+      "label": "Header.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\Header.tsx",
+      "source_location": "L1",
+      "id": "src_components_header_tsx",
+      "community": 14,
+      "norm_label": "header.tsx"
+    },
+    {
+      "label": "NudgeDisplay.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\NudgeDisplay.tsx",
+      "source_location": "L1",
+      "id": "src_components_nudgedisplay_tsx",
+      "community": 15,
+      "norm_label": "nudgedisplay.tsx"
+    },
+    {
+      "label": "Settings.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\Settings.tsx",
+      "source_location": "L1",
+      "id": "src_components_settings_tsx",
+      "community": 16,
+      "norm_label": "settings.tsx"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src\\types\\index.ts",
+      "source_location": "L1",
+      "id": "src_types_index_ts",
+      "community": 17,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "ecosync.test.tsx",
+      "file_type": "code",
+      "source_file": "src\\__tests__\\ecosync.test.tsx",
+      "source_location": "L1",
+      "id": "src_tests_ecosync_test_tsx",
+      "community": 18,
+      "norm_label": "ecosync.test.tsx"
+    },
+    {
+      "label": "handleAddPreset()",
+      "file_type": "code",
+      "source_file": "src\\components\\Cart.tsx",
+      "source_location": "L127",
+      "community": 0,
+      "norm_label": "handleaddpreset()",
+      "id": "components_cart_handleaddpreset"
+    },
+    {
+      "label": "handleAddCustom()",
+      "file_type": "code",
+      "source_file": "src\\components\\Cart.tsx",
+      "source_location": "L136",
+      "community": 0,
+      "norm_label": "handleaddcustom()",
+      "id": "components_cart_handleaddcustom"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\error.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_error_tsx",
+      "target": "app_error_errorboundary"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_layout_tsx",
+      "target": "app_layout_rootlayout"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\chat\\route.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_api_chat_route_ts",
+      "target": "chat_route_post"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\settings\\page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_settings_page_tsx",
+      "target": "settings_page_settingspage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\tracker\\error.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_tracker_error_tsx",
+      "target": "tracker_error_trackererror"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\tracker\\page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_tracker_page_tsx",
+      "target": "tracker_page_trackerpage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\Cart.tsx",
+      "source_location": "L127",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_components_cart_tsx",
+      "target": "components_cart_handleaddpreset"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\Cart.tsx",
+      "source_location": "L136",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_components_cart_tsx",
+      "target": "components_cart_handleaddcustom"
+    }
+  ],
+  "hyperedges": []
+}
