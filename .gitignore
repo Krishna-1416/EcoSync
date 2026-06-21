@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent & project mapping files
+graphify-out/
+CLAUDE.md
+AGENTS.md
+
