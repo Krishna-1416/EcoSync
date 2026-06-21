@@ -1,29 +1,30 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CartItem, EmissionResult, Settings } from '../../types';
 import { Cart } from '../../components/Cart';
 import { NudgeDisplay } from '../../components/NudgeDisplay';
 
 export default function TrackerPage() {
   const [items, setItems] = useState<CartItem[]>([]);
-  const [settings, setSettings] = useState<Settings>({ reviewerApiKey: '' });
+  const [settings] = useState<Settings>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('ecosync_settings');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          console.error('Failed to parse settings:', e);
+        }
+      }
+    }
+    return { reviewerApiKey: '' };
+  });
   const [customPrompt, setCustomPrompt] = useState<string>('');
   const [result, setResult] = useState<EmissionResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isCalculating, setIsCalculating] = useState<boolean>(false);
 
-  // Load settings from localStorage on client side
-  useEffect(() => {
-    const saved = localStorage.getItem('ecosync_settings');
-    if (saved) {
-      try {
-        setSettings(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to parse settings:', e);
-      }
-    }
-  }, []);
 
   const handleAddItem = (newItem: Omit<CartItem, 'id'>) => {
     const id = Math.random().toString(36).substring(2, 9);

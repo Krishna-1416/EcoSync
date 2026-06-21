@@ -1,23 +1,23 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Settings } from '../../types';
 import { SettingsPanel } from '../../components/Settings';
 
 export default function SettingsPage() {
-  const [settings, setSettings] = useState<Settings>({ reviewerApiKey: '' });
-
-  // Load settings from localStorage on client side
-  useEffect(() => {
-    const saved = localStorage.getItem('ecosync_settings');
-    if (saved) {
-      try {
-        setSettings(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to parse settings:', e);
+  const [settings, setSettings] = useState<Settings>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('ecosync_settings');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          console.error('Failed to parse settings:', e);
+        }
       }
     }
-  }, []);
+    return { reviewerApiKey: '' };
+  });
 
   const handleUpdateSettings = useCallback((newSettings: Settings) => {
     setSettings(newSettings);
