@@ -1,15 +1,23 @@
 import Link from "next/link";
-import { Home, MapPin, Train, Utensils } from "lucide-react";
+import { Home, LayoutDashboard, MapPin, Train, Utensils } from "lucide-react";
 
 export function Navbar() {
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center gap-2 px-4 py-3 rounded-full bg-neutral-950/80 backdrop-blur-xl border border-white/10 shadow-2xl">
+      <div className="flex items-center gap-1 px-4 py-3 rounded-full bg-neutral-950/80 backdrop-blur-xl border border-white/10 shadow-2xl">
         <Link 
-          href="/hub" 
-          className="flex flex-col items-center gap-1 p-2 min-w-[72px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
+          href="/" 
+          className="flex flex-col items-center gap-1 p-2 min-w-[64px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
         >
           <Home className="w-5 h-5" />
+          <span className="text-[10px] font-semibold tracking-wider uppercase">Home</span>
+        </Link>
+
+        <Link 
+          href="/hub" 
+          className="flex flex-col items-center gap-1 p-2 min-w-[64px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
+        >
+          <LayoutDashboard className="w-5 h-5" />
           <span className="text-[10px] font-semibold tracking-wider uppercase">Hub</span>
         </Link>
         
@@ -17,7 +25,7 @@ export function Navbar() {
 
         <Link 
           href="/navigation" 
-          className="flex flex-col items-center gap-1 p-2 min-w-[72px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
+          className="flex flex-col items-center gap-1 p-2 min-w-[64px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
         >
           <MapPin className="w-5 h-5" />
           <span className="text-[10px] font-semibold tracking-wider uppercase">Navigate</span>
@@ -25,7 +33,7 @@ export function Navbar() {
 
         <Link 
           href="/transit" 
-          className="flex flex-col items-center gap-1 p-2 min-w-[72px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
+          className="flex flex-col items-center gap-1 p-2 min-w-[64px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
         >
           <Train className="w-5 h-5" />
           <span className="text-[10px] font-semibold tracking-wider uppercase">Transit</span>
@@ -33,7 +41,7 @@ export function Navbar() {
 
         <Link 
           href="/amenities" 
-          className="flex flex-col items-center gap-1 p-2 min-w-[72px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
+          className="flex flex-col items-center gap-1 p-2 min-w-[64px] rounded-2xl hover:bg-white/10 transition-colors text-neutral-400 hover:text-white"
         >
           <Utensils className="w-5 h-5" />
           <span className="text-[10px] font-semibold tracking-wider uppercase">Amenities</span>
