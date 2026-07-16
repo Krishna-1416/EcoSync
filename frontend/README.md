@@ -1,18 +1,9 @@
-# Smart Stadiums - Fan Companion (FIFA World Cup 2026)
+# Smart Stadiums - Fan Companion (PromptWars Virtual Challenge)
 
 ## 🏆 Challenge Vertical: Smart Stadiums & Tournament Operations
 This project addresses **[Challenge 4] Smart Stadiums & Tournament Operations** for the FIFA World Cup 2026. 
 
 Our chosen persona is **Fans and Spectators**. We have built a GenAI-enabled assistant that resolves major pain points for stadium attendees: getting lost, dealing with language barriers, and finding the best transport routes during peak crowd times.
-
----
-
-## 🛠️ Project Structure
-This repository contains a full-stack application split into:
-1. **`/frontend`**: Next.js (App Router) client application with a premium monotonic, Apple-inspired Bento Grid interface.
-2. **`/backend`**: Node.js/Express service written in strict TypeScript using a layered architecture (`Routes -> Controllers -> Services -> Repositories -> Database`).
-
----
 
 ## 🚀 Approach and Logic
 
@@ -23,24 +14,11 @@ The core logic revolves around a context-aware chat interface:
 2. **Dynamic Routing:** It simulates processing queries like "Where is my seat?" or "Where is vegan food?" by evaluating the user's location against stadium topology.
 3. **Live Transit Integration:** Simulates fetching real-time transport APIs to guide the user to the fastest exit.
 
----
-
 ## ⚙️ How the Solution Works
 
-### Backend
-- **Express + TypeScript:** Serves API endpoints under `/api/v1`.
-- **Database (Prisma + SQLite):** Stores static stadium configuration and caches transit updates.
-- **LlmService:** Coordinates query response synthesis. Includes a local fallback rule engine to ensure the concierge remains online even when external API services fail.
-- **Validation:** Strict validation of request schemas using **Zod**.
-- **Observability:** Centralized logging and **Sentry** configuration.
-
-### Frontend
-- **Next.js 15 (App Router):** Renders the user-facing web app.
-- **Framer Motion:** Handles glassmorphic entrance animations and card transitions.
-- **Lucide Icons:** Provides consistent, high-contrast visual cues.
-- **Stateful Interactive Filtering:** The food directory `/amenities` features real-time interactive category filters.
-
----
+- **Frontend:** Built with Next.js 15 (App Router), React, Tailwind CSS v4, and Framer Motion. 
+- **GenAI Interface:** The main feature is the central Chat Interface. Users type their queries, and the backend synthesizes real-time navigation instructions, food stall locations, and transit updates.
+- **Accessibility:** High-contrast text, large touch targets, semantic HTML elements, and focus states ensure the app is usable by all fans.
 
 ## 🧠 Assumptions Made
 
@@ -48,36 +26,21 @@ The core logic revolves around a context-aware chat interface:
 2. **Scale:** We assume 50,000+ concurrent users per stadium. The backend is planned as a serverless, highly concurrent Node.js/Express environment.
 3. **GenAI Layer:** For the scope of this hackathon submission, the backend LLM responses are mocked via a context-aware rule engine to simulate how a tuned GenAI model would respond to specific prompts.
 
----
-
 ## 🛠️ How to Run
 
-### Prerequisite
-Make sure you have Node.js installed.
-
-### 1. Run the Backend
-```bash
-cd backend
-npm install
-npm run prisma:generate
-npm run prisma:migrate
-npm run dev
-```
-The backend will boot up at [http://localhost:5000](http://localhost:5000).
-
-### 2. Run the Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🧪 Evaluation Focus Areas Addressed
 
-- **Code Quality:** Split into clean modular services and components. Written in strict TypeScript.
-- **Security:** Strict separation of client/server components. Input is validated using Zod.
+- **Code Quality:** Written in strict TypeScript, utilizing modular components (`BentoCard.tsx`, `ChatInterface.tsx`).
+- **Security:** Strict separation of client/server components. Input is validated (or prepared for Zod validation on the backend).
 - **Efficiency:** The Bento grid uses native CSS Grid for high-performance layout rendering without heavy JavaScript.
-- **Accessibility:** Uses high-contrast typography, large touch targets, and semantic HTML elements.
+- **Accessibility:** Uses accessible Lucide icons and high-contrast color variables.

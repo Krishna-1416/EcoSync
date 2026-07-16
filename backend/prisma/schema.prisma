@@ -1,0 +1,23 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model StadiumConfig {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String   // JSON string of config values
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TransitCache {
+  id        String   @id @default(uuid())
+  gate      String   @unique
+  data      String   // JSON string of transit schedule
+  updatedAt DateTime @updatedAt
+}
