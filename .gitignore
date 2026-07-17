@@ -47,3 +47,14 @@ Thumbs.db
 # Screenshots
 screenshots/
 
+# Large binary / tool files (not part of submission)
+*.exe
+*.bin
+
+# Transcript and analysis files (dev-only)
+transcript.*
+*.json3
+parse.py
+
+# Graphify cache (regenerable, not needed in submission)
+graphify-out/cache/
