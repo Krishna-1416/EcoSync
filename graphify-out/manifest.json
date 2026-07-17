@@ -1,11 +1,15 @@
 {
+  "C:\\Users\\Krishna\\Virtual Promptwar 4\\parse.py": {
+    "mtime": 1784299611.407756,
+    "hash": "8f33454f29669f17cddc96430a1e7e9c"
+  },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\jest.config.js": {
     "mtime": 1784225239.8506298,
     "hash": "1674e53682e696887ead59692db70377"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\app.ts": {
-    "mtime": 1784221476.666862,
-    "hash": "d77b38da8b136cd462fd52e26ac92e21"
+    "mtime": 1784298261.9300275,
+    "hash": "3d5c12e29ebceda1de3ed40e3404cf6d"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\instrument.ts": {
     "mtime": 1784221383.6784117,
@@ -27,29 +31,41 @@
     "mtime": 1784221366.384485,
     "hash": "1e7b03b430d3c50b2684d12c6e2fea54"
   },
+  "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\controllers\\telemetryController.ts": {
+    "mtime": 1784300041.3480115,
+    "hash": "3cb4f81a519c0be8530671ff213f2800"
+  },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\controllers\\transitController.ts": {
-    "mtime": 1784221370.020234,
-    "hash": "4f4df022d2dff3fdde1d3c4098ea90e4"
+    "mtime": 1784298263.4141736,
+    "hash": "96a50caa318b92c5a7e1d0d8e145d1d4"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\middleware\\asyncErrorWrapper.ts": {
     "mtime": 1784221336.5800476,
     "hash": "0c7beaea4de67a3695a31aa911ef8f7d"
+  },
+  "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\repositories\\TelemetryRepository.ts": {
+    "mtime": 1784299888.6248586,
+    "hash": "25fbedb8591341b601acca837cad9617"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\routes\\chatRoutes.ts": {
     "mtime": 1784221373.4986868,
     "hash": "0a606a601cd3aba8fa86633c58a5b6b3"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\routes\\index.ts": {
-    "mtime": 1784221379.9381204,
-    "hash": "6747f410dcb1662463c90f394eeac0fe"
+    "mtime": 1784299925.3129497,
+    "hash": "b7ffafed1f0fb1327e1c352438ea082b"
+  },
+  "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\routes\\telemetryRoutes.ts": {
+    "mtime": 1784299922.8187726,
+    "hash": "e69b516ed24a5f4b08b53f6d5f55db33"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\routes\\transitRoutes.ts": {
     "mtime": 1784221376.8260732,
     "hash": "0c9d502b058f6a95372c6aaaa82a3a72"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\services\\llmService.ts": {
-    "mtime": 1784221350.9936173,
-    "hash": "15fd6d93efb0fa9f66acc36e63825626"
+    "mtime": 1784300895.7842634,
+    "hash": "1a7b931d60c2d8131529b4a61a93d7a8"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\services\\transitService.ts": {
     "mtime": 1784221355.9747307,
@@ -60,8 +76,12 @@
     "hash": "55a80f03926661b35edb4773e4cc2bb8"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\__tests__\\chat.test.ts": {
-    "mtime": 1784225242.1188707,
-    "hash": "d196213d338c7733ec660dcd100fec35"
+    "mtime": 1784300904.6064277,
+    "hash": "0eddc2cb1015f9b597d9da12dd0570f0"
+  },
+  "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\__tests__\\telemetry.test.ts": {
+    "mtime": 1784299977.1863773,
+    "hash": "eceae767d2c968c7f56f3c6c09d16d8b"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\backend\\src\\__tests__\\transit.test.ts": {
     "mtime": 1784225319.2643824,
@@ -111,25 +131,29 @@
     "mtime": 1784221577.7573223,
     "hash": "040f4235f8d253274e08f74e7242aea0"
   },
+  "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\app\\evaluator\\page.tsx": {
+    "mtime": 1784302355.8440003,
+    "hash": "7c683249da0417b37023e7615b6a77ba"
+  },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\app\\hub\\page.tsx": {
-    "mtime": 1784220846.4188564,
-    "hash": "c16718017d1f481efe2f2463fd415fdf"
+    "mtime": 1784300099.9432018,
+    "hash": "3ceb7863659938f791320674459d12bb"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\app\\navigation\\page.tsx": {
     "mtime": 1784224680.1833744,
     "hash": "22f60624d9b4192d8c38c20baef7d8fa"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\app\\transit\\page.tsx": {
-    "mtime": 1784221411.3502944,
-    "hash": "df9c504e22c729b2a5ab57c441e9e250"
+    "mtime": 1784298659.6440847,
+    "hash": "af643ed188606d1a71b6766fbc509941"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\components\\BentoCard.tsx": {
-    "mtime": 1784218049.9194794,
-    "hash": "7d3dbf966211da28238f5dd3d57923c2"
+    "mtime": 1784298287.7829936,
+    "hash": "9fc0f67c272717d4bda9a533cd9ad90b"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\components\\ChatInterface.tsx": {
-    "mtime": 1784224664.441189,
-    "hash": "62b2db735b60ed0fa76450e8f422577f"
+    "mtime": 1784300132.6172755,
+    "hash": "0739b69fc90d1084010f947192732fba"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\components\\Navbar.tsx": {
     "mtime": 1784224662.2704797,
@@ -140,20 +164,24 @@
     "hash": "d9837f38cc05303254571985e3164050"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\__tests__\\components.test.tsx": {
-    "mtime": 1784225315.6127098,
-    "hash": "072d709f7ccf8adaad29386df735aeb9"
+    "mtime": 1784300156.3526797,
+    "hash": "b299fb032367d3d0e6e9cdf4138b1f2f"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\__tests__\\page.test.tsx": {
     "mtime": 1784224907.689691,
     "hash": "fa9d7adb63ea0cbc7e014cdf830b8214"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\src\\__tests__\\pages.test.tsx": {
-    "mtime": 1784225395.751169,
-    "hash": "34f712bbe46643f9281d4bc24626c80a"
+    "mtime": 1784300186.2525039,
+    "hash": "4f993aed72eb9ea92ee004364fec4cda"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\README.md": {
     "mtime": 1784221789.0556953,
     "hash": "c94f78fc75678095cf7ee207bead872a"
+  },
+  "C:\\Users\\Krishna\\Virtual Promptwar 4\\transcript.en-orig.txt": {
+    "mtime": 1784299630.0334938,
+    "hash": "86b32fcf0f16ee56f285a9e285c38217"
   },
   "C:\\Users\\Krishna\\Virtual Promptwar 4\\frontend\\AGENTS.md": {
     "mtime": 1784217959.4145322,
