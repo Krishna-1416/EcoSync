@@ -1,6 +1,5 @@
 import { BentoCard } from "@/components/BentoCard";
-import dynamic from "next/dynamic";
-const ChatInterface = dynamic(() => import("@/components/ChatInterface").then(mod => mod.ChatInterface), { ssr: false });
+import { ChatInterface } from "@/components/ChatInterface";
 import { MapPin, Utensils, Train } from "lucide-react";
 import Link from "next/link";
 
