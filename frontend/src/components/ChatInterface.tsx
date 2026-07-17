@@ -20,7 +20,7 @@ export function ChatInterface() {
       {
         id: "1",
         role: "assistant",
-        content: "Hello! I'm your Stadium AI Concierge. How can I help you today? I can help with navigation, food, transit, or general queries.",
+        content: "Hello! I'm your Volunteer Co-Pilot. I'm here to assist you with crowd routing, multilingual fan support, and operational intelligence. How can I help you manage the stadium today?",
       },
     ];
   });
@@ -135,7 +135,7 @@ export function ChatInterface() {
       <div className="absolute top-0 left-0 right-0 h-14 bg-neutral-950/80 backdrop-blur-md border-b border-white/5 flex items-center px-6 z-10 rounded-t-3xl">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Context Active: Match Day • 50,000+ Fans</span>
+          <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Telemetry Active • Live routing engine online</span>
         </div>
       </div>
 
@@ -183,7 +183,7 @@ export function ChatInterface() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about navigation, food, or transit..."
+            placeholder="Ask about crowd conditions, translations, or routing..."
             aria-label="Chat message input"
             className="w-full bg-neutral-900/80 border border-white/10 rounded-full py-4 pl-6 pr-16 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all backdrop-blur-md shadow-2xl font-sans"
           />

@@ -15,10 +15,10 @@ describe('Frontend Pages', () => {
   describe('Hub Page', () => {
     it('renders the hub dashboard layout correctly', () => {
       render(<HubPage />);
-      expect(screen.getByRole('heading', { name: /Welcome to Stadium AI/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /Welcome to Volunteer Co-Pilot/i })).toBeInTheDocument();
       // Test for specific elements rendered by BentoCard in the hub
       expect(screen.getByText(/Find My Seat/i)).toBeInTheDocument();
-      expect(screen.getByText(/^Transit$/i)).toBeInTheDocument();
+      expect(screen.getByText(/^Jury Panel$/i)).toBeInTheDocument();
     });
   });
 });

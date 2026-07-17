@@ -12,6 +12,7 @@
     "prisma:migrate": "prisma db push"
   },
   "dependencies": {
+    "@google/genai": "^2.12.0",
     "@prisma/client": "^5.10.2",
     "@sentry/node": "^7.101.0",
     "@types/compression": "^1.8.1",

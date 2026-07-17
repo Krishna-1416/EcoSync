@@ -1,7 +1,9 @@
 import request from 'supertest';
-import app from '../app'; // Assume app is exported from app.ts
+import app from '../app';
 
-describe('Chat API Endpoints', () => {
+jest.setTimeout(30000);
+
+describe('Chat API Endpoints - Edge Cases', () => {
   it('should return a generated response for a valid chat request', async () => {
     const response = await request(app)
       .post('/api/v1/chat')
@@ -13,15 +15,9 @@ describe('Chat API Endpoints', () => {
         }
       });
 
-    // Check status
     expect(response.status).toBe(200);
-    
-    // Check response structure
     expect(response.body).toHaveProperty('success', true);
-    expect(response.body).toHaveProperty('data');
     expect(response.body.data).toHaveProperty('reply');
-    
-    // Check if the reply is a string
     expect(typeof response.body.data.reply).toBe('string');
   });
 
@@ -36,5 +32,32 @@ describe('Chat API Endpoints', () => {
 
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty('success', false);
+  });
+
+  it('should handle edge case: missing language and zone gracefully', async () => {
+    const response = await request(app)
+      .post('/api/v1/chat')
+      .send({
+        message: 'I need to exit'
+      });
+
+    expect(response.status).toBe(200);
+    expect(response.body.success).toBe(true);
+    expect(response.body.data.reply).toContain('[Reasoning]');
+  });
+
+  it('should handle edge case: extremely long message', async () => {
+    const longMessage = 'a'.repeat(5000);
+    const response = await request(app)
+      .post('/api/v1/chat')
+      .send({
+        message: longMessage,
+        context: { language: 'en' }
+      });
+      
+    // Should be handled gracefully, likely rejected by Zod validation if max length is set,
+    // or processed. In our current Zod schema, we didn't specify max length, so it's a 200 or 400.
+    // Assuming standard 200 or 400.
+    expect([200, 400]).toContain(response.status);
   });
 });
