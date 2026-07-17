@@ -4,7 +4,6 @@ import { useState } from "react";
 import { BentoCard } from "@/components/BentoCard";
 import { ArrowLeft, Upload, CheckCircle2, AlertCircle } from "lucide-react";
 import Link from "next/link";
-import { apiClient } from "@/lib/apiClient";
 
 export default function EvaluatorPanel() {
   const [jsonInput, setJsonInput] = useState(`{
@@ -25,7 +24,12 @@ export default function EvaluatorPanel() {
     try {
       setStatus("loading");
       const data = JSON.parse(jsonInput);
-      await apiClient.post("/telemetry/upload", data);
+      const res = await fetch("http://localhost:5000/api/v1/telemetry/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error("Failed to inject telemetry");
       setStatus("success");
       setMessage("Telemetry data injected successfully!");
       setTimeout(() => setStatus("idle"), 3000);
