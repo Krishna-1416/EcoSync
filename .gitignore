@@ -56,5 +56,6 @@ transcript.*
 *.json3
 parse.py
 
-# Graphify cache (regenerable, not needed in submission)
-graphify-out/cache/
+# Graphify output (regenerable, not needed in submission)
+graphify-out/
+
