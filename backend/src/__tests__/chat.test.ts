@@ -7,7 +7,7 @@ import app from '../app';
  * The LLM service falls back to the rule engine when GEMINI_API_KEY is not set,
  * making all tests deterministic in a CI environment.
  */
-jest.setTimeout(15000);
+jest.setTimeout(5000);
 
 describe('Chat API Endpoints', () => {
   // --- Happy Path Tests ---
