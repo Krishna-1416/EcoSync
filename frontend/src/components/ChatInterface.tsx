@@ -11,29 +11,55 @@ interface Message {
 }
 
 export function ChatInterface() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      role: "assistant",
-      content: "Hello! I'm your Stadium AI Concierge. How can I help you today? I can help with navigation, food, transit, or general queries.",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = sessionStorage.getItem("stadium_chat_history");
+      if (saved) return JSON.parse(saved);
+    }
+    return [
+      {
+        id: "1",
+        role: "assistant",
+        content: "Hello! I'm your Stadium AI Concierge. How can I help you today? I can help with navigation, food, transit, or general queries.",
+      },
+    ];
+  });
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("stadium_chat_history", JSON.stringify(messages));
+    }
   }, [messages]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    const userMessage: Message = { id: Date.now().toString(), role: "user", content: input };
+    const userMessage: Message = { id: crypto.randomUUID(), role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsTyping(true);
+
+    const cacheKey = `chat_cache_${input.toLowerCase()}`;
+    const cachedResponse = sessionStorage.getItem(cacheKey);
+    if (cachedResponse) {
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content: cachedResponse,
+          },
+        ]);
+        setIsTyping(false);
+      }, 300);
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:5000/api/v1/chat", {
@@ -56,10 +82,11 @@ export function ChatInterface() {
 
       const resData = await response.json();
       if (resData.success && resData.data) {
+        sessionStorage.setItem(cacheKey, resData.data.reply);
         setMessages((prev) => [
           ...prev,
           {
-            id: Date.now().toString(),
+            id: crypto.randomUUID(),
             role: "assistant",
             content: resData.data.reply,
           },
@@ -73,7 +100,7 @@ export function ChatInterface() {
       // Resilient fallback logic
       setTimeout(() => {
         const assistantMessage: Message = {
-          id: (Date.now() + 1).toString(),
+          id: crypto.randomUUID(),
           role: "assistant",
           content: generateMockResponse(userMessage.content),
         };
@@ -122,7 +149,7 @@ export function ChatInterface() {
               className={`flex gap-4 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}
             >
               <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border ${msg.role === "user" ? "bg-white text-black border-transparent" : "bg-neutral-900 text-white border-white/10"}`}>
-                {msg.role === "user" ? <User size={20} /> : <Bot size={20} />}
+                {msg.role === "user" ? <User aria-hidden="true" size={20} /> : <Bot aria-hidden="true" size={20} />}
               </div>
               <div className={`max-w-[80%] rounded-2xl p-4 text-[15px] leading-relaxed shadow-sm ${msg.role === "user" ? "bg-white text-black rounded-tr-sm font-medium" : "bg-neutral-900/80 text-neutral-200 border border-white/5 rounded-tl-sm font-sans"}`}>
                 {msg.content}
@@ -136,10 +163,10 @@ export function ChatInterface() {
               className="flex gap-4 flex-row"
             >
               <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 bg-neutral-900 text-white border border-white/10 shadow-lg">
-                <Bot size={20} />
+                <Bot aria-hidden="true" size={20} />
               </div>
               <div className="rounded-2xl p-4 bg-neutral-900/80 border border-white/5 rounded-tl-sm flex items-center gap-2">
-                <Loader2 size={16} className="animate-spin text-neutral-500" />
+                <Loader2 aria-hidden="true" size={16} className="animate-spin text-neutral-500" />
                 <span className="text-neutral-500 text-sm font-medium">Synthesizing...</span>
               </div>
             </motion.div>
@@ -156,6 +183,7 @@ export function ChatInterface() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about navigation, food, or transit..."
+            aria-label="Chat message input"
             className="w-full bg-neutral-900/80 border border-white/10 rounded-full py-4 pl-6 pr-16 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all backdrop-blur-md shadow-2xl font-sans"
           />
           <button
@@ -164,7 +192,7 @@ export function ChatInterface() {
             className="absolute right-2 w-10 h-10 rounded-full bg-white text-black flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-200 transition-colors shadow-lg"
             aria-label="Send message"
           >
-            <Send size={18} className="ml-0.5" />
+            <Send aria-hidden="true" size={18} className="ml-0.5" />
           </button>
         </form>
       </div>

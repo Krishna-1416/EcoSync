@@ -26,7 +26,7 @@ export default function LandingPage() {
           >
             <span className="relative z-10 flex items-center gap-2">
               Enter the Hub
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight aria-hidden="true" className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </span>
             <div className="absolute inset-0 bg-neutral-200 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
           </Link>
@@ -36,14 +36,14 @@ export default function LandingPage() {
       {/* Feature Bento Section */}
       <section className="py-32 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">Everything you need. <br className="md:hidden" /><span className="text-neutral-500">All in one place.</span></h2>
+          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">Everything you need. <br className="md:hidden" /><span className="text-neutral-400">All in one place.</span></h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
           {/* Feature 1 */}
           <div className="md:col-span-2 rounded-3xl bg-neutral-950 border border-white/10 p-10 flex flex-col justify-between overflow-hidden relative group">
             <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">
-              <MessageSquare className="w-32 h-32 text-white" />
+              <MessageSquare aria-hidden="true" className="w-32 h-32 text-white" />
             </div>
             <div className="relative z-10">
               <h3 className="text-2xl font-display font-bold mb-2">GenAI Concierge</h3>
@@ -64,7 +64,7 @@ export default function LandingPage() {
           <div className="rounded-3xl bg-neutral-950 border border-white/10 p-10 flex flex-col justify-between group">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 mb-6 group-hover:scale-110 transition-transform">
-                <MapPin className="text-white/80 w-6 h-6" />
+                <MapPin aria-hidden="true" className="text-white/80 w-6 h-6" />
               </div>
               <h3 className="text-2xl font-display font-bold mb-2">Precision Navigation</h3>
               <p className="text-neutral-400 font-sans text-lg">
@@ -77,7 +77,7 @@ export default function LandingPage() {
           <div className="rounded-3xl bg-neutral-950 border border-white/10 p-10 flex flex-col justify-between group">
              <div>
               <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 mb-6 group-hover:scale-110 transition-transform">
-                <Train className="text-white/80 w-6 h-6" />
+                <Train aria-hidden="true" className="text-white/80 w-6 h-6" />
               </div>
               <h3 className="text-2xl font-display font-bold mb-2">Smart Transit</h3>
               <p className="text-neutral-400 font-sans text-lg">

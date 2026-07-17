@@ -1,12 +1,14 @@
 import "./instrument"; // Must be imported first
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
+import compression from "compression";
 import * as Sentry from "@sentry/node";
 import apiRoutes from "./routes";
 
 const app = express();
 
 app.use(cors());
+app.use(compression());
 app.use(express.json());
 
 // Sentry request handler

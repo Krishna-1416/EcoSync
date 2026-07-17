@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
+import { memo } from "react";
+
 interface BentoCardProps {
   className?: string;
   children: ReactNode;
@@ -12,7 +14,7 @@ interface BentoCardProps {
   delay?: number;
 }
 
-export function BentoCard({ className, children, colSpan = 1, rowSpan = 1, delay = 0 }: BentoCardProps) {
+export const BentoCard = memo(function BentoCard({ className, children, colSpan = 1, rowSpan = 1, delay = 0 }: BentoCardProps) {
   const colSpanClass = {
     1: "col-span-1",
     2: "col-span-1 md:col-span-2",
@@ -42,4 +44,4 @@ export function BentoCard({ className, children, colSpan = 1, rowSpan = 1, delay
       {children}
     </motion.div>
   );
-}
+});

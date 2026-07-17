@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ArrowLeft, MapPin, Navigation as NavIcon } from "lucide-react";
+import { ArrowLeft, Navigation as NavIcon } from "lucide-react";
 
 export default function NavigationPage() {
   return (
     <main className="min-h-screen p-4 md:p-8 lg:p-12 max-w-7xl mx-auto flex flex-col gap-6">
       <header className="mb-6 flex items-center gap-4 pt-4">
         <Link href="/hub" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
-          <ArrowLeft className="text-white w-6 h-6" />
+          <ArrowLeft aria-hidden="true" className="text-white w-6 h-6" />
         </Link>
         <div>
           <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-white/95">
@@ -37,7 +37,7 @@ export default function NavigationPage() {
               <h2 className="text-white text-2xl font-display font-bold mt-1">Section 104, Row G</h2>
             </div>
             <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-              <NavIcon className="text-emerald-500 w-6 h-6" />
+              <NavIcon aria-hidden="true" className="text-emerald-500 w-6 h-6" />
             </div>
           </div>
 
