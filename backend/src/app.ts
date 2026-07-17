@@ -2,13 +2,34 @@ import "./instrument"; // Must be imported first
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import compression from "compression";
+import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import * as Sentry from "@sentry/node";
 import apiRoutes from "./routes";
 
 const app = express();
 
-// --- Security: Rate Limiting ---
+// ─── Security: HTTP Headers via Helmet ────────────────────────────────────────
+// Sets Content-Security-Policy, X-XSS-Protection, X-Frame-Options, HSTS, etc.
+// Mitigates XSS, clickjacking, and MIME-sniffing attacks on the API layer.
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:"],
+        connectSrc: ["'self'"],
+        frameSrc: ["'none'"],
+        objectSrc: ["'none'"],
+      },
+    },
+    crossOriginEmbedderPolicy: false, // Required for Sentry to function
+  })
+);
+
+// ─── Security: Rate Limiting ───────────────────────────────────────────────────
 // Protects the GenAI endpoint from abuse and prompt-injection flooding.
 // 100 requests per 15 minutes per IP — appropriate for stadium volunteer use.
 const limiter = rateLimit({
@@ -22,7 +43,7 @@ const limiter = rateLimit({
   },
 });
 
-// --- Security: CORS locked to known origins ---
+// ─── Security: CORS ────────────────────────────────────────────────────────────
 const corsOptions = {
   origin: process.env.ALLOWED_ORIGIN || "*",
   methods: ["GET", "POST"],
@@ -49,7 +70,12 @@ app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({ status: "healthy", timestamp: new Date().toISOString() });
 });
 
-// Sentry Error Handler (must be registered before other error middlewares)
+// 404 handler — catch all unmatched routes before error handler
+app.use((req: Request, res: Response) => {
+  res.status(404).json({ success: false, error: `Route ${req.method} ${req.path} not found` });
+});
+
+// Sentry Error Handler (must be before other error middlewares)
 app.use(Sentry.Handlers.errorHandler());
 
 // Global Error Handler

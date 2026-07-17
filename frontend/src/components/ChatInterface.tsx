@@ -129,17 +129,37 @@ export function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col h-full w-full relative">
+    <div className="flex flex-col h-full w-full relative" role="region" aria-label="Volunteer Co-Pilot chat">
+      {/* Skip to content link for keyboard users */}
+      <a
+        href="#chat-input"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded focus:font-semibold"
+      >
+        Skip to chat input
+      </a>
+
       {/* Header Context Indicator */}
-      <div className="absolute top-0 left-0 right-0 h-14 bg-neutral-950/80 backdrop-blur-md border-b border-white/5 flex items-center px-6 z-10 rounded-t-3xl">
+      <div className="absolute top-0 left-0 right-0 h-14 bg-neutral-950/80 backdrop-blur-md border-b border-white/5 flex items-center px-6 z-10 rounded-t-3xl" role="status" aria-label="System status">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
           <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Telemetry Active • Live routing engine online</span>
         </div>
       </div>
 
+      {/* Screen reader live region — announces new AI messages */}
+      <div aria-live="polite" aria-atomic="false" className="sr-only" role="log" aria-label="Chat messages">
+        {messages.length > 1 && messages[messages.length - 1].role === "assistant"
+          ? `Co-Pilot says: ${messages[messages.length - 1].content}`
+          : ""}
+      </div>
+
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto pt-20 pb-24 px-6 flex flex-col gap-6 custom-scrollbar">
+      <div
+        className="flex-1 overflow-y-auto pt-20 pb-24 px-6 flex flex-col gap-6 custom-scrollbar"
+        role="log"
+        aria-label="Conversation history"
+        aria-live="off"
+      >
         <AnimatePresence initial={false}>
           {messages.map((msg) => (
             <motion.div
@@ -147,8 +167,13 @@ export function ChatInterface() {
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               className={`flex gap-4 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}
+              role="article"
+              aria-label={msg.role === "user" ? "Your message" : "Co-Pilot response"}
             >
-              <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border ${msg.role === "user" ? "bg-white text-black border-transparent" : "bg-neutral-900 text-white border-white/10"}`}>
+              <div
+                className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border ${msg.role === "user" ? "bg-white text-black border-transparent" : "bg-neutral-900 text-white border-white/10"}`}
+                aria-hidden="true"
+              >
                 {msg.role === "user" ? <User aria-hidden="true" size={20} /> : <Bot aria-hidden="true" size={20} />}
               </div>
               <div className={`max-w-[80%] rounded-2xl p-4 text-[15px] leading-relaxed shadow-sm ${msg.role === "user" ? "bg-white text-black rounded-tr-sm font-medium" : "bg-neutral-900/80 text-neutral-200 border border-white/5 rounded-tl-sm font-sans"}`}>
@@ -161,8 +186,11 @@ export function ChatInterface() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-4 flex-row"
+              role="status"
+              aria-label="Co-Pilot is thinking"
+              aria-busy="true"
             >
-              <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 bg-neutral-900 text-white border border-white/10 shadow-lg">
+              <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 bg-neutral-900 text-white border border-white/10 shadow-lg" aria-hidden="true">
                 <Bot aria-hidden="true" size={20} />
               </div>
               <div className="rounded-2xl p-4 bg-neutral-900/80 border border-white/5 rounded-tl-sm flex items-center gap-2">
@@ -177,20 +205,25 @@ export function ChatInterface() {
 
       {/* Input Area */}
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent z-10">
-        <form onSubmit={handleSubmit} className="relative flex items-center max-w-4xl mx-auto">
+        <form onSubmit={handleSubmit} className="relative flex items-center max-w-4xl mx-auto" role="search" aria-label="Send a message to Co-Pilot">
           <input
+            id="chat-input"
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about crowd conditions, translations, or routing..."
             aria-label="Chat message input"
+            aria-describedby="chat-hint"
+            autoComplete="off"
             className="w-full bg-neutral-900/80 border border-white/10 rounded-full py-4 pl-6 pr-16 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-transparent transition-all backdrop-blur-md shadow-2xl font-sans"
           />
+          <span id="chat-hint" className="sr-only">Type your question and press Enter or click Send to get routing assistance</span>
           <button
             type="submit"
             disabled={!input.trim() || isTyping}
-            className="absolute right-2 w-10 h-10 rounded-full bg-white text-black flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-200 transition-colors shadow-lg"
+            className="absolute right-2 w-10 h-10 rounded-full bg-white text-black flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-200 transition-colors shadow-lg focus:ring-2 focus:ring-offset-2 focus:ring-white focus:outline-none"
             aria-label="Send message"
+            aria-disabled={!input.trim() || isTyping}
           >
             <Send aria-hidden="true" size={18} className="ml-0.5" />
           </button>
