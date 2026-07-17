@@ -62,8 +62,7 @@ export function ChatInterface() {
     }
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
-      const response = await fetch(`${apiUrl}/api/v1/chat`, {
+      const response = await fetch(`/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
